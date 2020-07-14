@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"encoding/json"
 	"net/http"
 	"strconv"
 
@@ -17,17 +16,14 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		errMsg.Message = "Not a valid user id"
 		errMsg.Code = "not_valid"
-		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode(errMsg)
+		utils.SendError(w, http.StatusBadRequest, *errMsg)
 		return
 	}
 
 	user, errMsg := service.GetUser(userID)
 	if err != nil {
-		w.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(w).Encode(errMsg)
+		utils.SendError(w, http.StatusNotFound, *errMsg)
 		return
 	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(user)
+	utils.SendSuccess(w, http.StatusOK, user)
 }

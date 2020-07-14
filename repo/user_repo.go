@@ -2,7 +2,6 @@ package repo
 
 import (
 	"fmt"
-	"net/http"
 
 	"github.com/sunil206b/go-microservices/model"
 	"github.com/sunil206b/go-microservices/utils"
@@ -19,9 +18,8 @@ func GetUser(id uint64) (*model.User, *utils.ApplicationError) {
 	user := users[id]
 	if user == nil {
 		return nil, &utils.ApplicationError{
-			Message:    fmt.Sprintf("User with id %d not found", id),
-			StatusCode: http.StatusNotFound,
-			Code:       "not_found",
+			Message: fmt.Sprintf("User with id %d not found", id),
+			Code:    "not_found",
 		}
 	}
 	return user, nil
