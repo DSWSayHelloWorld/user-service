@@ -1,6 +1,7 @@
 package repo
 
 import (
+	"database/sql"
 	"fmt"
 
 	"github.com/sunil206b/go-microservices/model"
@@ -13,8 +14,19 @@ var (
 	}
 )
 
-// GetUser function will return
-func GetUser(id uint64) (*model.User, *utils.ApplicationError) {
+type userRepo struct {
+	db *sql.DB
+}
+
+// NewUserRepo will return the user repository
+func NewUserRepo(conn *sql.DB) IUserRepo {
+	return &userRepo{
+		db: conn,
+	}
+}
+
+// GetUser function will return th user for the given id
+func (u *userRepo) GetUserByID(id uint64) (*model.User, *utils.ApplicationError) {
 	user := users[id]
 	if user == nil {
 		return nil, &utils.ApplicationError{
