@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/go-microservices.iml" filepath="$PROJECT_DIR$/.idea/go-microservices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/user-handling.iml" filepath="$PROJECT_DIR$/.idea/user-handling.iml" />
     </modules>
   </component>
 </project>
